@@ -1,0 +1,462 @@
+SQL> create table Membership
+  2  (Mem_num char(3) Primary key,
+  3  Mem_fname Varchar(10) not null,
+  4  Mem_lname Varchar(10) not null,
+  5  Mem_Street Varchar(10),
+  6  Mem_city Varchar(10),
+  7  Mem_zip Varchar(10),
+  8  Mem_balance num(10)
+  9  
+SQL> create table Membership
+  2  (Mem_num char(3) Primary key,
+  3  Mem_fname Varchar(10) not null,
+  4  Mem_lname Varchar(10) not null,
+  5  Mem_Street Varchar(15),
+  6  Mem_city Varchar(3),
+  7  Mem_city Varchar(3),
+  8  
+SQL> create table Membership
+  2  Mem_fname Varchar(10) not null,
+  3  Mem_lname Varchar(10) not null,
+  4  Mem_street Varchar(10),
+  5  Mem_state Varchar(3),
+  6  
+SQL> create table Membership
+  2  Mem_fname Varchar(10) not null,
+  3  Mem_lname Varchar(10) not null,
+  4  Mem_street Varchar(25),
+  5  Mem_state Varchar(3),
+  6  Mem_zip Varchar(5),
+  7  (Mem_num char(3) Primary key,
+  8  Mem_balance num(10)
+  9  ;
+Mem_fname Varchar(10) not null,
+*
+ERROR at line 2:
+ORA-00922: missing or invalid option 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table Membership
+  2  (Mem_num char(3) Primary key,
+  3  Mem_fname Varchar(10) not null,
+  4  Mem_lname Varchar(10) not null,
+  5  Mem_street Varchar(25),
+  6  Mem_state Varchar(3),
+  7  Mem_zip Varchar(5),
+  8* Mem_balance num(10)
+  9  /
+Mem_balance num(10)
+               *
+ERROR at line 8:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table Membership
+  2  (Mem_num char(3) Primary key,
+  3  Mem_fname Varchar(10) not null,
+  4  Mem_lname Varchar(10) not null,
+  5  Mem_street Varchar(25),
+  6  Mem_state Varchar(3),
+  7  Mem_zip Varchar(5),
+  8* Mem_balance num(10))
+SQL> /
+Mem_balance num(10))
+               *
+ERROR at line 8:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table Membership
+  2  (Mem_num char(3) Primary key,
+  3  Mem_fname Varchar(10) not null,
+  4  Mem_lname Varchar(10) not null,
+  5  Mem_street Varchar(25),
+  6  Mem_state Varchar(3),
+  7  Mem_zip Varchar(5),
+  8* Mem_balance number(10))
+SQL> /
+
+Table created.
+
+SQL> create table rental
+  2  (Rent_num char(4) primary key,
+  3  Rent_date date,
+  4  Mem_num Varchar(3) not null,
+  5  constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num);
+constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num)
+                                                                                *
+ERROR at line 5:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table rental
+  2  (Rent_num char(4) primary key,
+  3  Rent_date date,
+  4  Mem_num Varchar(3) not null,
+  5* constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num))
+SQL> /
+constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num))
+                                          *
+ERROR at line 5:
+ORA-02267: column type incompatible with referenced column type 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table rental
+  2  (Rent_num char(4) primary key,
+  3  Rent_date date,
+  4  Mem_num char(3) not null,
+  5* constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num))
+SQL> /
+
+Table created.
+
+SQL> create table video
+  2  (Vid_num Char(5) primary key,
+  3  Vid_indate date,
+  4  Movie_num Char(4));
+
+Table created.
+
+SQL> create table Movie
+  2  (Movie_num Char(4) primary key,
+  3  Movie_title Varchar(30) not null,
+  4  Movie_year Char(4) not null,
+  5  Movie_cost number(2, 2), not null,
+  6  Movie_genre Varchar(10), not null,
+  7  Price_code char(1) not null);
+Movie_cost number(2, 2), not null,
+                         *
+ERROR at line 5:
+ORA-00904: : invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table Movie
+  2  (Movie_num Char(4) primary key,
+  3  Movie_title Varchar(30) not null,
+  4  Movie_year Char(4) not null,
+  5  Movie_cost number(2, 2) not null,
+  6  Movie_genre Varchar(10) not null,
+  7* Price_code char(1) not null)
+SQL> ;
+  1  create table Movie
+  2  (Movie_num Char(4) primary key,
+  3  Movie_title Varchar(30) not null,
+  4  Movie_year Char(4) not null,
+  5  Movie_cost number(2, 2) not null,
+  6  Movie_genre Varchar(10) not null,
+  7* Price_code char(1) not null)
+SQL> /
+
+Table created.
+
+SQL> create table Price
+  2  (Price_code char(1) primary key,
+  3  Price_description Varchar(10) not null,
+  4  Price_rentfee Varchar(1, 1) not null,
+  5  Price_dailyfee num(1) not null;
+Price_rentfee Varchar(1, 1) not null,
+                       *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table Price
+  2  (Price_code char(1) primary key,
+  3  Price_description Varchar(10) not null,
+  4  Price_rentfee number(1, 1) not null,
+  5* Price_dailyfee number(1) not null)
+SQL> /
+
+Table created.
+
+SQL> create table detailrental
+  2  (Rent_num char(4),
+  3  Vid_num char(5),
+  4  Detail_fee number(1, 1),
+  5  Detail_duedate date not null,
+  6  detail_returndate date not null,
+  7  Detail_dailylatefee number(1),
+  8  primary key(Rent_num, Vid_num),
+  9  constraint foreign key (Rent_num) references Rental(Rent_num),
+ 10  constraint foreign key (Vid_num) references Video(Vid_num);
+constraint foreign key (Rent_num) references Rental(Rent_num),
+                       *
+ERROR at line 9:
+ORA-00902: invalid datatype 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table detailrental
+  2  (Rent_num char(4),
+  3  Vid_num char(5),
+  4  Detail_fee number(1, 1),
+  5  Detail_duedate date not null,
+  6  Detail_returndate date not null,
+  7  Detail_dailylatefee number(1),
+  8  primary key(Rent_num, Vid_num),
+  9  foreign key (Rent_num) references Rental(Rent_num),
+ 10* foreign key (Vid_num) references Video(Vid_num))
+SQL> /
+
+Table created.
+
+SQL> alter table rental
+  2  add constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num);
+add constraint rental_Mem_num_fk foreign key (Mem_num) references Membership(Mem_num)
+                                 *
+ERROR at line 2:
+ORA-02275: such a referential constraint already exists in the table 
+
+
+SQL> alter table Video
+  2  add constraint Video_Movie_num_fk foreign key (Movie_num) references Movie(Movie_num);
+
+Table altered.
+
+SQL> alter table Movie
+  2  add constraint Movie_Price_code_fk foreign key (Price_code) references Price(Price_code);
+
+Table altered.
+
+SQL> spool off
+SQL> insert into membership
+  2  values ('102', 'Tami', 'Dawson', '2632 Takli Circle', 'Norene', 'TN', '37136', 11)
+  3  values ('103', 'Curt', 'Knight', '4025 Corell Court', 'Flagtap', 'KY', '41219', 6);
+values ('103', 'Curt', 'Knight', '4025 Corell Court', 'Flagtap', 'KY', '41219', 6)
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> insert into membership
+  2  values ('102', 'Tami', 'Dawson', '2632 Takli Circle', 'Norene', 'TN', '37136', 11);
+insert into membership
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+SQL> alter table membership
+  2  add Mem_City Varchar(15);
+
+Table altered.
+
+SQL> insert into membership
+  2  values ('103', 'Curt', 'Knight', '4025 Corell Court', 'Flagtap', 'KY', '41219', 6);
+values ('103', 'Curt', 'Knight', '4025 Corell Court', 'Flagtap', 'KY', '41219', 6)
+                                                      *
+ERROR at line 2:
+ORA-12899: value too large for column "SCOTT"."MEMBERSHIP"."MEM_STATE" (actual: 
+7, maximum: 3) 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2* values ('103', 'Curt', 'Knight', '4025 Corell Court', 'KY', 'Flagtap', '41219', 6)
+SQL> /
+values ('103', 'Curt', 'Knight', '4025 Corell Court', 'KY', 'Flagtap', '41219', 6)
+                                                            *
+ERROR at line 2:
+ORA-12899: value too large for column "SCOTT"."MEMBERSHIP"."MEM_ZIP" (actual: 
+7, maximum: 5) 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2* values ('103', 'Curt', 'Knight', '4025 Corell Court', 'Flagtap', '41219', 6, 'KY')
+SQL> /
+values ('103', 'Curt', 'Knight', '4025 Corell Court', 'Flagtap', '41219', 6, 'KY')
+                                                      *
+ERROR at line 2:
+ORA-12899: value too large for column "SCOTT"."MEMBERSHIP"."MEM_STATE" (actual: 
+7, maximum: 3) 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2* values ('103', 'Curt', 'Knight', '4025 Corell Court', 'KY', '41219', 6, 'Flagtap')
+SQL> /
+
+1 row created.
+
+SQL> insert into membership
+  2  values ('102', 'Tami', 'Dawson', '2632 Takli Circle', 'TN', '37136', 11, 'Norene')
+  3  values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 'Quebec');
+values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 'Quebec')
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2  values ('102', 'Tami', 'Dawson', '2632 Takli Circle', 'TN', '37136', 11, 'Norene')
+  3* values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 0, 'Quebec')
+SQL> /
+values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 0, 'Quebec')
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2  values ('102', 'Tami', 'Dawson', '2632 Takli Circle', 'TN', '37136', 11, 'Norene')
+  3* values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', null, 'Quebec')
+SQL> /
+values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', null, 'Quebec')
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> insert into membership
+  2  values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 'Quebec');
+insert into membership
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2* values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 0,'Quebec')
+SQL> ;
+  1  insert into membership
+  2* values ('104', 'Jamal', 'Melendez', '788 East 145th Avenue', 'TN', '38579', 0,'Quebec')
+SQL> /
+
+1 row created.
+
+SQL> insert into membership
+  2  values ('102', 'Tami', 'Dawson', '2632 Takli Circle', 'TN', '37136', 11, 'Norene')
+  3  ;
+
+1 row created.
+
+SQL> insert into membership
+  2  values ('105', 'Iva', 'Mcclain', '6045 Musket Ball Circle', 'KY', '42783', 15, 'Summit') AND
+  3  values ('106', 'Miranda', 'Parks', '4469 Maxwell Place', 'TN', '38183', 0, 'Germantown');
+values ('105', 'Iva', 'Mcclain', '6045 Musket Ball Circle', 'KY', '42783', 15, 'Summit') AND
+                                                                                         *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2  values ('105', 'Iva', 'Mcclain', '6045 Musket Ball Circle', 'KY', '42783', 15, 'Summit')
+  3  AND
+  4* values ('106', 'Miranda', 'Parks', '4469 Maxwell Place', 'TN', '38183', 0, 'Germantown')
+SQL> /
+AND
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into membership
+  2* values ('105', 'Iva', 'Mcclain', '6045 Musket Ball Circle', 'KY', '42783', 15, 'Summit')
+  3  /
+
+1 row created.
+
+SQL> insert into membership
+  2  values ('106', 'Miranda', 'Parks', '4469 Maxwell Place', 'TN', '38183', 0, 'Germantown');
+
+1 row created.
+
+SQL> desc membership
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MEM_NUM                                   NOT NULL CHAR(3)
+ MEM_FNAME                                 NOT NULL VARCHAR2(10)
+ MEM_LNAME                                 NOT NULL VARCHAR2(10)
+ MEM_STREET                                         VARCHAR2(25)
+ MEM_STATE                                          VARCHAR2(3)
+ MEM_ZIP                                            VARCHAR2(5)
+ MEM_BALANCE                                        NUMBER(10)
+ MEM_CITY                                           VARCHAR2(15)
+
+SQL> select * from membership
+  2  ;
+
+MEM MEM_FNAME  MEM_LNAME  MEM_STREET                MEM MEM_Z MEM_BALANCE       
+--- ---------- ---------- ------------------------- --- ----- -----------       
+MEM_CITY                                                                        
+---------------                                                                 
+103 Curt       Knight     4025 Corell Court         KY  41219           6       
+Flagtap                                                                         
+                                                                                
+104 Jamal      Melendez   788 East 145th Avenue     TN  38579           0       
+Quebec                                                                          
+                                                                                
+102 Tami       Dawson     2632 Takli Circle         TN  37136          11       
+Norene                                                                          
+                                                                                
+
+MEM MEM_FNAME  MEM_LNAME  MEM_STREET                MEM MEM_Z MEM_BALANCE       
+--- ---------- ---------- ------------------------- --- ----- -----------       
+MEM_CITY                                                                        
+---------------                                                                 
+105 Iva        Mcclain    6045 Musket Ball Circle   KY  42783          15       
+Summit                                                                          
+                                                                                
+106 Miranda    Parks      4469 Maxwell Place        TN  38183           0       
+Germantown                                                                      
+                                                                                
+
+SQL> set linesize 1000000
+SP2-0267: linesize option 1000000 out of range (1 through 32767)
+SQL> set linesize 100
+SQL> set linesize 1000
+SQL> select * from membership;
+
+MEM MEM_FNAME  MEM_LNAME  MEM_STREET                MEM MEM_Z MEM_BALANCE MEM_CITY                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+--- ---------- ---------- ------------------------- --- ----- ----------- ---------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+103 Curt       Knight     4025 Corell Court         KY  41219           6 Flagtap                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+104 Jamal      Melendez   788 East 145th Avenue     TN  38579           0 Quebec                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+102 Tami       Dawson     2632 Takli Circle         TN  37136          11 Norene                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+105 Iva        Mcclain    6045 Musket Ball Circle   KY  42783          15 Summit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+106 Miranda    Parks      4469 Maxwell Place        TN  38183           0 Germantown                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+SQL> spool off
